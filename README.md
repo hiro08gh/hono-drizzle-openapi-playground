@@ -1,16 +1,16 @@
 # hono-drizzle-openapi-playground
 
-Hono + Drizzle + OpenAPI sample playground.
+This is a sample playground for using Hono, Drizzle, and OpenAPI together.
 
 ## setup
 
-Create datebase in D1.
+Run the following command to create the database:
 
 ```bash
 npx wrangler d1 create hono-drizzle-openapi-playground
 ```
 
-Add database_id.
+Update your configuration file to include the database_id and other settings:
 
 ```toml
 [[d1_databases]]
@@ -20,13 +20,15 @@ database_id = "your datebase_id"
 migrations_dir = "drizzle"
 ```
 
-And, migration your local.
+Replace your_database_id with the actual database ID.
+
+To apply migrations locally, run:
 
 ```bash
 npm run migration:local
 ```
 
-Finally, start dev server.
+Finally, start the development server with:
 
 ```bash
 npm run dev
