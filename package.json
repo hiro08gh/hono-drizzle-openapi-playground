@@ -3,6 +3,8 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
+    "migration": "wrangler d1 migrations apply hono-drizzle-openapi-playground",
+    "migration:local": "wrangler d1 migrations apply hono-drizzle-openapi-playground --local",
     "test": "vitest"
   },
   "dependencies": {
