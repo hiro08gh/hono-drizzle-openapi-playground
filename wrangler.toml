@@ -1,0 +1,13 @@
+name = "hono-drizzle-openapi-playground"
+main = "src/index.ts"
+compatibility_date = "2025-01-05"
+
+# [vars]
+# MY_VAR = "my-variable"
+
+# compatibility_flags = [ "nodejs_compat" ]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hono-drizzle-openapi-playground"
+database_id = "59794382-fb16-4d8d-b80d-85b7746301d3"
