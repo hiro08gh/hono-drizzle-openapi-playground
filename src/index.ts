@@ -3,7 +3,7 @@ import { OpenAPIHono } from "@hono/zod-openapi";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 
-import router from "./routes";
+import routes from "./routes";
 
 type Bindings = {
 	DB: D1Database;
@@ -13,7 +13,7 @@ const app = new OpenAPIHono<{ Bindings: Bindings }>();
 
 app.use(logger(), cors());
 app
-	.route("/", router)
+	.route("/", routes)
 	.doc("/doc", {
 		openapi: "3.0.0",
 		info: {

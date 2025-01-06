@@ -28,14 +28,33 @@ To apply migrations locally, run:
 npm run migration:local
 ```
 
-Finally, start the development server with:
+Start the development server with:
 
 ```bash
 npm run dev
 ```
 
+Go to bellow url.
+
+- http://localhost:3001 - API endpoint
+- http://localhost:3001/doc - Swagger endpoint
+
+## Test
+
+You can run tests for the application using the following command:
+
+```bash
+npm run test
+```
+
 ## Deploy
+
+To deploy the application to a production environment, use the following command:
 
 ```bash
 npm run deploy
 ```
+
+## Author
+
+[@hiro08gh](https://github.com/hiro08gh)
