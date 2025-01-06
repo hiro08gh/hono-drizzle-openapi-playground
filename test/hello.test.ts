@@ -15,7 +15,18 @@ describe("hello test", () => {
   afterAll(async () => {
     await worker.stop();
   });
-  it("正常系", async () => {
+  it("正常系 /", async () => {
+    const res = await app.request(
+      "/",
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      },
+      env
+    );
+    expect(res.status).toBe(200);
+  });
+  it("正常系 /todos", async () => {
     const res = await app.request(
       "/hello",
       {
