@@ -5,7 +5,7 @@ import app from "../src/index";
 
 const { env } = await getPlatformProxy();
 
-describe("sample test", () => {
+describe("hello test", () => {
   let worker: Unstable_DevWorker;
   beforeAll(async () => {
     worker = await unstable_dev("src/index.ts", {
@@ -17,7 +17,7 @@ describe("sample test", () => {
   });
   it("正常系", async () => {
     const res = await app.request(
-      "/todos",
+      "/hello",
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },

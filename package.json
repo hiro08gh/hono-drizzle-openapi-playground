@@ -1,7 +1,7 @@
 {
   "name": "hono-drizzle-openapi-playground",
   "scripts": {
-    "dev": "wrangler dev",
+    "dev": "wrangler dev --port 3001",
     "deploy": "wrangler deploy --minify",
     "migration": "wrangler d1 migrations apply hono-drizzle-openapi-playground",
     "migration:local": "wrangler d1 migrations apply hono-drizzle-openapi-playground --local",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20241218.0",
+    "@hono/swagger-ui": "^0.5.0",
     "drizzle-kit": "^0.30.1",
     "vitest": "^2.1.8",
     "wrangler": "^3.96.0"
