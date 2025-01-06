@@ -37,7 +37,7 @@ npm run dev
 Go to bellow url.
 
 - http://localhost:3001 - API endpoint
-- http://localhost:3001/doc - Swagger endpoint
+- http://localhost:3001/ui - Swagger endpoint
 
 ## Test
 
