@@ -1,60 +1,22 @@
-import { Hono } from "hono";
-import { drizzle } from "drizzle-orm/d1";
-import { todos } from "./schema";
-import { eq } from "drizzle-orm";
+import { OpenAPIHono } from "@hono/zod-openapi";
+import { swaggerUI } from "@hono/swagger-ui";
+import router from "./routes";
 
 type Bindings = {
   DB: D1Database;
 };
 
-const app = new Hono<{ Bindings: Bindings }>();
+const app = new OpenAPIHono<{ Bindings: Bindings }>();
 
-app.get("/", (c) => {
-  return c.text("Hello Hono!");
-});
-
-app.get("/todos", async (c) => {
-  const db = drizzle(c.env.DB);
-  const result = await db.select().from(todos).all();
-  return c.json(result);
-});
-
-app.post("/todos", async (c) => {
-  const params = await c.req.json<typeof todos.$inferSelect>();
-  const db = drizzle(c.env.DB);
-  const result = await db
-    .insert(todos)
-    .values({ title: params.title })
-    .execute();
-  return c.json(result);
-});
-
-app.put("/todos/:id", async (c) => {
-  const id = Number.parseInt(c.req.param("id"));
-
-  if (Number.isNaN(id)) {
-    return c.json({ error: "invalid ID" }, 400);
-  }
-
-  const params = await c.req.json<typeof todos.$inferSelect>();
-  const db = drizzle(c.env.DB);
-  const result = await db
-    .update(todos)
-    .set({ title: params.title, status: params.status })
-    .where(eq(todos.id, id));
-  return c.json(result);
-});
-
-app.delete("/todos/:id", async (c) => {
-  const id = Number.parseInt(c.req.param("id"));
-
-  if (Number.isNaN(id)) {
-    return c.json({ error: "invalid ID" }, 400);
-  }
-
-  const db = drizzle(c.env.DB);
-  const result = await db.delete(todos).where(eq(todos.id, id));
-  return c.json(result);
-});
+app
+  .route("/", router)
+  .doc("/doc", {
+    openapi: "3.0.0",
+    info: {
+      version: "1.0.0",
+      title: "hono-drizzle-openapi-playground",
+    },
+  })
+  .get("/ui", swaggerUI({ url: "/doc" }));
 
 export default app;
